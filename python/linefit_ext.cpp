@@ -39,23 +39,28 @@
  */
 
 #include <Eigen/Core>
-#include "nanobind/nanobind.h"
+
+#include <nanobind/nanobind.h>
 #include <nanobind/stl/string.h>
 #include <nanobind/stl/vector.h>
 #include <nanobind/ndarray.h>
-// #include <nanobind/stl/bind_vector.h>
 
 #include "../cpp/linefit/ground_segmentation.h"
 #include "../cpp/linefit/mics.h"
-// #include "stl_vector_eigen.h"
 
 namespace nb = nanobind;
 using namespace nb::literals;
 
 NB_MODULE(linefit, m) {
     nb::class_<GroundSegmentation>(m, "ground_seg")
-        .def(nb::init<>(), "linefit ground segmentation constructor, param: TODO")
+        .def(nb::init<>(), "linefit ground segmentation constructor, param: check default config to know more.")
         .def(nb::init<const std::string &>(), "linefit ground segmentation constructor, with toml file as param file input.")
-        // .def("run", nb::overload_cast<std::vector<Eigen::Vector3d> &>(&GroundSegmentation::segment), "points"_a);
-        .def("run", &GroundSegmentation::segment, "points"_a, nanobind::rv_policy::reference);
+        .def("run", [](GroundSegmentation& self, const nb::ndarray<double>& array) -> std::vector<bool> {
+            if (array.ndim() != 2 || array.shape(1) != 3) {
+                throw std::runtime_error("Input array must have shape (N, 3)");
+            }
+            std::vector<Eigen::Vector3d> points_vec(array.shape(0));
+            std::memcpy(points_vec.data(), array.data(), array.size() * sizeof(double));
+            return self.segment(points_vec);
+        }, "points"_a);
 }

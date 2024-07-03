@@ -26,7 +26,7 @@ if __name__ == "__main__":
         groundseg = ground_seg()
     else:
         groundseg = ground_seg(config_path)
-    label = np.array(groundseg.run(pc_data[:,:3].tolist()))
+    label = np.array(groundseg.run(pc_data[:,:3]))
     print(f"point cloud shape: {pc_data[:, :3].shape}, label shape: {label.shape}, ground points: {np.sum(label)}, time: {time.time() - start_time:.3f} s")
     
     from python.utils.o3d_view import MyVisualizer

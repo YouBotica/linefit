@@ -101,6 +101,6 @@ public:
   GroundSegmentation(const std::string& toml_file);
   // virtual ~GroundSegmentation() = default;
 
-  std::vector<bool> segment(const std::vector<std::vector<float>> points);
+  std::vector<bool> segment(const PointCloud &cloud);
 
 };

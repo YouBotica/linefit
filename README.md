@@ -10,6 +10,9 @@ Running on macOS, Windows and Linux, with Python Version >= 3.8.
 Available in: <a href="https://github.com/Kin-Zhang/linefit"><img src="https://img.shields.io/badge/Windows-0078D6?st&logo=windows&logoColor=white" /> <a href="https://github.com/Kin-Zhang/linefit"><img src="https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black" />  <a href="https://github.com/Kin-Zhang/linefit"><img src="https://img.shields.io/badge/mac%20os-000000?&logo=apple&logoColor=white" /> </a>
 
 <!--  -->
+📜 Change Log:
+- 2024-07-03: Speed up nanobind `np.array` <-> `std::vector<Eigen:: Vector3d>` conversion and also `NOMINSIZE` in make. Speed difference: 0.1s -> 0.01s. Based on [discussion here](https://github.com/wjakob/nanobind/discussions/426).
+- 2024-02-15: Initial version.
 
 ## 0. Setup
 

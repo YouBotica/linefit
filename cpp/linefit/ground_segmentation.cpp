@@ -63,12 +63,7 @@ GroundSegmentation::GroundSegmentation(const std::string &toml_file) {
 
 }
 
-std::vector<bool> GroundSegmentation::segment(const std::vector<std::vector<float>> points) {
-  // TODO: Maybe there is a better way to convert the points to Eigen::Vector3d
-  PointCloud cloud;
-  for (auto point : points) {
-    cloud.push_back(Eigen::Vector3d(point[0], point[1], point[2]));
-  }
+std::vector<bool> GroundSegmentation::segment(const PointCloud &cloud) {
   if (verbose_)
     std::cout << "Segmenting cloud with " << cloud.size() << " points...\n";
 
