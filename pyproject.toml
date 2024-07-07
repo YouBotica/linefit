@@ -4,7 +4,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "linefit"
-version = "1.0.0"
+version = "1.0.1"
 description = "linefit ground segmentation algorithm Python bindings"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -13,6 +13,12 @@ authors = [
 ]
 classifiers = [
     "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
 
 [project.urls]

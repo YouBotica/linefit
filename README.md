@@ -1,6 +1,10 @@
 linefit
 ---
 
+[![Stable Version](https://img.shields.io/pypi/v/linefit?label=stable)](https://pypi.org/project/linefit/#history)
+[![Python Versions](https://img.shields.io/pypi/pyversions/linefit)](https://pypi.org/project/linefit/)
+[![Download Stats](https://img.shields.io/pypi/dm/linefit)](https://pypistats.org/packages/linefit)
+
 linefit is a ground segmentation algorithm for 3D point clouds. This repo we setup a python binding for the original C++ code and push to pypi for easy installation through `pip install linefit`.
 
 Author: C++ code from [Lorenz Wellhausen](https://github.com/lorenwel), nanobind by [Qingwen Zhang](https://kin-zhang.github.io/).
