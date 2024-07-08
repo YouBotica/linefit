@@ -45,9 +45,10 @@ A window will pop up and show the ground segmentation result.
 
 ## Parameter description
 
+Parameters are set in `assets/config.toml`. I also provided several popular datasets' parameters in [assets/config](assets/config). Note that the origin pose should in sensor link but base link of the robot or vehicle. The process step can be found in [DeFlow](https://github.com/KTH-RPL/DeFlow/blob/main/dataprocess/README.md)/[SeFlow](https://github.com/KTH-RPL/SeFlow/blob/main/dataprocess/README.md).
+
 TL;DR: tune the `sensor_height` to offset the ground point z to `0`. Others are optional for better performance. If you are interested in the details, please read the following.
 
-Parameters are set in `assets/config.toml`
 
 This algorithm works on the assumption that you known the height of the sensor above ground. 
 Therefore, **you have to adjust the `sensor_height`** to your robot specifications, otherwise, it will not work.
