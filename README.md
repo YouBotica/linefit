@@ -7,7 +7,7 @@ linefit
 
 linefit is a ground segmentation algorithm for 3D point clouds. This repo we setup a python binding for the original C++ code and push to pypi for easy installation through `pip install linefit`.
 
-Author: C++ code from [Lorenz Wellhausen](https://github.com/lorenwel), nanobind by [Qingwen Zhang](https://kin-zhang.github.io/).
+Author: C++ code from [Lorenz Wellhausen](https://github.com/lorenwel), python package from [Qingwen Zhang](https://kin-zhang.github.io/).
 
 Running on macOS, Windows and Linux, with Python Version >= 3.8.
 
@@ -31,10 +31,23 @@ pip install .
 python3 -c 'import linefit; print("success")'
 ```
 
+Dependencies for demo:
+```bash
+# for reading data and visualization
+pip install numpy open3d
+```
 
 ## 1. Run the example
 
-After installation, you can run the example by, it will directly show a default effect of demo data.
+Demo usage:
+```python
+pc_data = np.load("kitti_pc0.npy") # [N, 3]
+groundseg = ground_seg("config.toml")
+label = np.array(groundseg.run(pc_data[:,:3])) # [N, 1]
+# 1: ground, 0: non-ground for this pc_data
+```
+
+You can check the full example script in [example.py](example.py). If you run the example script, it will directly show a default effect of demo data.
 
 ```bash
 python example.py
