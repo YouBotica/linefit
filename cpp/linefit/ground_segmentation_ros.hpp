@@ -23,6 +23,7 @@ struct GroundSegmentationParams {
     double min_slope;
     double max_slope;
     double max_dist_to_line;
+    double max_dist_to_line_slope;
     double max_error_square;
     double long_threshold;
     double max_long_height;

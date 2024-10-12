@@ -55,6 +55,7 @@ std::vector<bool> GroundSegmentationRos::segment(PointCloud &cloud) {
   params_.min_slope = ros_node->get_parameter("ground.min_slope").as_double();
   params_.max_slope = ros_node->get_parameter("ground.max_slope").as_double();
   params_.max_dist_to_line = ros_node->get_parameter("ground.max_dist_to_line").as_double();
+  params_.max_dist_to_line_slope = ros_node->get_parameter("ground.max_dist_to_line_slope").as_double();
   params_.max_error_square = max_fit_error * max_fit_error;
   params_.long_threshold = ros_node->get_parameter("ground.long_threshold").as_double();
   params_.max_long_height = ros_node->get_parameter("ground.max_long_height").as_double();
@@ -151,7 +152,7 @@ void GroundSegmentationRos::assignClusterThread(const unsigned int &start_index,
     const int segment_index = bin_index_[i].first;
     if (segment_index >= 0) {
       double dist = segments_[segment_index].verticalDistanceToLine(point_2d.d, point_2d.z);
-      // std::cout << "dist: " << dist << std::endl;
+      // std::cout << "point.d: " << point_2d.d << std::endl;
       // Search neighboring segments.
       int steps = 1;
       while (dist < 0 && steps * segment_step < params_.line_search_angle) {
@@ -174,9 +175,12 @@ void GroundSegmentationRos::assignClusterThread(const unsigned int &start_index,
         }
         ++steps;
       }
-      if (dist < params_.max_dist_to_line && dist != -1) {
+      if (dist < params_.max_dist_to_line_slope*point_2d.d + params_.max_dist_to_line && dist != -1) {
         segmentation->at(i) = true;
       }
+      // if (dist < params_.max_dist_to_line && dist != -1) {
+      //   segmentation->at(i) = true;
+      // }
     }
   }
 }
