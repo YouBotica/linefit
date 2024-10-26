@@ -42,7 +42,9 @@ void Segment::fitSegmentLines() {
           expected_z = cur_line.first * cur_point.d + cur_line.second;
         }
         current_line_points.push_back(cur_point);
+        // Fit line:
         cur_line = fitLocalLine(current_line_points);
+        // Get max error:
         const double error = getMaxError(current_line_points, cur_line);
         // Check if not a good line.
         if (error > max_error_ ||
